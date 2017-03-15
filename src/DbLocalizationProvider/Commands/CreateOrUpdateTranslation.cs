@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Data.Entity;
 using System.Globalization;
 using System.Linq;
 using DbLocalizationProvider.Cache;
+using Microsoft.EntityFrameworkCore;
 
 namespace DbLocalizationProvider.Commands
 {
@@ -18,7 +18,9 @@ namespace DbLocalizationProvider.Commands
             }
 
             public string Key { get; set; }
+
             public CultureInfo Language { get; set; }
+
             public string Translation { get; set; }
         }
 

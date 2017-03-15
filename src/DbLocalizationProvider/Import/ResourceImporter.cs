@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using DbLocalizationProvider.Internal;
 using DbLocalizationProvider.Commands;
+using Microsoft.EntityFrameworkCore;
 
 namespace DbLocalizationProvider.Import
 {

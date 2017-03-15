@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Web;
-using DbLocalizationProvider.Cache;
+﻿using DbLocalizationProvider.Cache;
 
 namespace DbLocalizationProvider.Commands
 {
@@ -10,28 +8,18 @@ namespace DbLocalizationProvider.Commands
 
         public class Handler : ICommandHandler<Command>
         {
+            private readonly ICacheManager _cache;
+
+            public Handler(ICacheManager cache)
+            {
+                _cache = cache;
+            }
+
             public void Execute(Command command)
             {
-                if(HttpContext.Current == null)
-                    return;
-
-                if(HttpContext.Current.Cache == null)
-                    return;
-
-                var itemsToRemove = new List<string>();
-                var enumerator = HttpContext.Current.Cache.GetEnumerator();
-
-                while (enumerator.MoveNext())
+                foreach (var cacheKey in _cache.Keys)
                 {
-                    if(enumerator.Key.ToString().ToLower().StartsWith(CacheKeyHelper.CacheKeyPrefix.ToLower()))
-                    {
-                        itemsToRemove.Add(enumerator.Key.ToString());
-                    }
-                }
-
-                foreach (var itemToRemove in itemsToRemove)
-                {
-                    ConfigurationContext.Current.CacheManager.Remove(itemToRemove);
+                    ConfigurationContext.Current.CacheManager.Remove(cacheKey);
                 }
             }
         }

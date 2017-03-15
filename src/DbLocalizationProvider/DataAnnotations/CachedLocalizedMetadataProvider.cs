@@ -47,7 +47,7 @@ namespace DbLocalizationProvider.DataAnnotations
             }
 
             // handle also case when [Display] attribute is not present
-            if(containerType?.GetCustomAttribute<LocalizedModelAttribute>() == null)
+            if(containerType?.GetTypeInfo().GetCustomAttribute<LocalizedModelAttribute>() == null)
                 return prototype;
 
             var translation = ModelMetadataLocalizationHelper.GetTranslation(containerType, propertyName);

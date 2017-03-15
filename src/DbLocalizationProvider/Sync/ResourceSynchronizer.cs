@@ -1,21 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
 using DbLocalizationProvider.Cache;
 using DbLocalizationProvider.Commands;
 using DbLocalizationProvider.Internal;
 using DbLocalizationProvider.Queries;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace DbLocalizationProvider.Sync
 {
     public class ResourceSynchronizer
     {
+        private readonly IConfigurationRoot _configProvider;
+
+        public ResourceSynchronizer(IConfigurationRoot configProvider)
+        {
+            _configProvider = configProvider;
+        }
+
         protected virtual string DetermineDefaultCulture()
         {
             return ConfigurationContext.Current.DefaultResourceCulture != null
@@ -28,8 +34,8 @@ namespace DbLocalizationProvider.Sync
             if(!ConfigurationContext.Current.DiscoverAndRegisterResources)
                 return;
 
-            var discoveredTypes = TypeDiscoveryHelper.GetTypes(t => t.GetCustomAttribute<LocalizedResourceAttribute>() != null,
-                                                                    t => t.GetCustomAttribute<LocalizedModelAttribute>() != null);
+            var discoveredTypes = TypeDiscoveryHelper.GetTypes(t => t.GetTypeInfo().GetCustomAttribute<LocalizedResourceAttribute>() != null,
+                                                               t => t.GetTypeInfo().GetCustomAttribute<LocalizedModelAttribute>() != null);
 
             // initialize db structures first (issue #53)
             using (var ctx = new LanguageEntities())
@@ -76,7 +82,7 @@ namespace DbLocalizationProvider.Sync
 
         private void ResetSyncStatus()
         {
-            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings[ConfigurationContext.Current.ConnectionName].ConnectionString))
+            using (var conn = new SqlConnection(_configProvider.GetConnectionString(ConfigurationContext.Current.ConnectionName)))
             {
                 var cmd = new SqlCommand("UPDATE dbo.LocalizationResources SET FromCode = 0", conn);
 
@@ -117,7 +123,8 @@ begin
     values ('{property.Key}', getutcdate(), 'type-scanner', 1, 0)
     set @resourceId = SCOPE_IDENTITY()
     insert into localizationresourcetranslations (resourceid, [language], [value]) values (@resourceId, '{defaultCulture}', N'{property.Translation.Replace("'", "''")}')
-    insert into localizationresourcetranslations (resourceid, [language], [value]) values (@resourceId, '{ConfigurationContext.CultureForTranslationsFromCode}', N'{property.Translation.Replace("'", "''")}')
+    insert into localizationresourcetranslations (resourceid, [language], [value]) values (@resourceId, '{ConfigurationContext.CultureForTranslationsFromCode}', N'{property
+                                                       .Translation.Replace("'", "''")}')
 end
 ");
                                      }
@@ -128,21 +135,20 @@ end
 
                                          if(existingResource.IsModified.HasValue && !existingResource.IsModified.Value)
                                          {
-
                                              AddTranslationScript(existingResource, defaultCulture, sb, property);
                                              AddTranslationScript(existingResource, ConfigurationContext.CultureForTranslationsFromCode, sb, property);
                                          }
                                      }
                                  }
 
-                                     using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings[ConfigurationContext.Current.ConnectionName].ConnectionString))
-                                     {
-                                         var cmd = new SqlCommand(sb.ToString(), conn) { CommandTimeout = 60 };
+                                 using (var conn = new SqlConnection(_configProvider.GetConnectionString(ConfigurationContext.Current.ConnectionName)))
+                                 {
+                                     var cmd = new SqlCommand(sb.ToString(), conn) { CommandTimeout = 60 };
 
-                                         conn.Open();
-                                         cmd.ExecuteNonQuery();
-                                         conn.Close();
-                                     }
+                                     conn.Open();
+                                     cmd.ExecuteNonQuery();
+                                     conn.Close();
+                                 }
                              });
         }
 

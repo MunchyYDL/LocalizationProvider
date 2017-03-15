@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using System.Data.Entity;
 using System.Globalization;
 using System.Linq;
 using DbLocalizationProvider.Cache;
+using Microsoft.EntityFrameworkCore;
 
 namespace DbLocalizationProvider.Queries
 {
@@ -48,7 +48,7 @@ namespace DbLocalizationProvider.Queries
                 LocalizationResourceTranslation localization = null;
 
                 // create empty null resource - to indicate non-existing one
-                if (resource == null)
+                if(resource == null)
                     resource = LocalizationResource.CreateNonExisting(key);
                 else
                     localization = GetTranslationFromAvailableList(resource.Translations, language, query.UseFallback);

@@ -1,0 +1,127 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.6</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\DbLocalizationProvider\AppBuilderExtensions.cs" Link="AppBuilderExtensions.cs" />
+    <Compile Include="..\DbLocalizationProvider\Cache\CacheKeyHelper.cs" Link="Cache\CacheKeyHelper.cs" />
+    <Compile Include="..\DbLocalizationProvider\Cache\ICacheManager.cs" Link="Cache\ICacheManager.cs" />
+    <Compile Include="..\DbLocalizationProvider\Commands\ClearCache.cs" Link="Commands\ClearCache.cs" />
+    <Compile Include="..\DbLocalizationProvider\Commands\CreateNewResource.cs" Link="Commands\CreateNewResource.cs" />
+    <Compile Include="..\DbLocalizationProvider\Commands\CreateOrUpdateTranslation.cs" Link="Commands\CreateOrUpdateTranslation.cs" />
+    <Compile Include="..\DbLocalizationProvider\Commands\DeleteResource.cs" Link="Commands\DeleteResource.cs" />
+    <Compile Include="..\DbLocalizationProvider\Commands\Internal\CommandHandlerWrapper.cs" Link="Commands\Internal\CommandHandlerWrapper.cs" />
+    <Compile Include="..\DbLocalizationProvider\ConfigurationContext.cs" Link="ConfigurationContext.cs" />
+    <Compile Include="..\DbLocalizationProvider\CustomAttributeDescriptor.cs" Link="CustomAttributeDescriptor.cs" />
+    <Compile Include="..\DbLocalizationProvider\DataAnnotations\CachedLocalizedMetadataProvider.cs" Link="DataAnnotations\CachedLocalizedMetadataProvider.cs" />
+    <Compile Include="..\DbLocalizationProvider\DataAnnotations\CompositeModelMetadataProvider.cs" Link="DataAnnotations\CompositeModelMetadataProvider.cs" />
+    <Compile Include="..\DbLocalizationProvider\DataAnnotations\LocalizedMetadataProvider.cs" Link="DataAnnotations\LocalizedMetadataProvider.cs" />
+    <Compile Include="..\DbLocalizationProvider\DataAnnotations\LocalizedModelValidatorProvider.cs" Link="DataAnnotations\LocalizedModelValidatorProvider.cs" />
+    <Compile Include="..\DbLocalizationProvider\DataAnnotations\ModelMetadataLocalizationHelper.cs" Link="DataAnnotations\ModelMetadataLocalizationHelper.cs" />
+    <Compile Include="..\DbLocalizationProvider\DuplicateResourceKeyException.cs" Link="DuplicateResourceKeyException.cs" />
+    <Compile Include="..\DbLocalizationProvider\EnumExtensions.cs" Link="EnumExtensions.cs" />
+    <Compile Include="..\DbLocalizationProvider\Export\JsonDataSerializer.cs" Link="Export\JsonDataSerializer.cs" />
+    <Compile Include="..\DbLocalizationProvider\Export\JsonDefaultContractResolver.cs" Link="Export\JsonDefaultContractResolver.cs" />
+    <Compile Include="..\DbLocalizationProvider\HtmlHelperExtensions.cs" Link="HtmlHelperExtensions.cs" />
+    <Compile Include="..\DbLocalizationProvider\ICommandExtensions.cs" Link="ICommandExtensions.cs" />
+    <Compile Include="..\DbLocalizationProvider\Import\ChangeType.cs" Link="Import\ChangeType.cs" />
+    <Compile Include="..\DbLocalizationProvider\Import\DetectedImportChange.cs" Link="Import\DetectedImportChange.cs" />
+    <Compile Include="..\DbLocalizationProvider\Import\ResourceImporter.cs" Link="Import\ResourceImporter.cs" />
+    <Compile Include="..\DbLocalizationProvider\Internal\ConcurrentDictionaryExtensions.cs" Link="Internal\ConcurrentDictionaryExtensions.cs" />
+    <Compile Include="..\DbLocalizationProvider\Internal\ExpressionHelper.cs" Link="Internal\ExpressionHelper.cs" />
+    <Compile Include="..\DbLocalizationProvider\Internal\IEnumerableOfTExtensions.cs" Link="Internal\IEnumerableOfTExtensions.cs" />
+    <Compile Include="..\DbLocalizationProvider\Internal\MemberInfoExtensions.cs" Link="Internal\MemberInfoExtensions.cs" />
+    <Compile Include="..\DbLocalizationProvider\Internal\PrimitiveTypes.cs" Link="Internal\PrimitiveTypes.cs" />
+    <Compile Include="..\DbLocalizationProvider\Internal\ResourceKeyBuilder.cs" Link="Internal\ResourceKeyBuilder.cs" />
+    <Compile Include="..\DbLocalizationProvider\Internal\StringExtensions.cs" Link="Internal\StringExtensions.cs" />
+    <Compile Include="..\DbLocalizationProvider\Internal\TranslationComparer.cs" Link="Internal\TranslationComparer.cs" />
+    <Compile Include="..\DbLocalizationProvider\IQueryExtensions.cs" Link="IQueryExtensions.cs" />
+    <Compile Include="..\DbLocalizationProvider\LanguageEntities.cs" Link="LanguageEntities.cs" />
+    <Compile Include="..\DbLocalizationProvider\LocalizationProvider.cs" Link="LocalizationProvider.cs" />
+    <Compile Include="..\DbLocalizationProvider\LocalizationResource.cs" Link="LocalizationResource.cs" />
+    <Compile Include="..\DbLocalizationProvider\LocalizationResourceTranslation.cs" Link="LocalizationResourceTranslation.cs" />
+    <Compile Include="..\DbLocalizationProvider\Migrations\201602162151204_InitialCreate.cs" Link="Migrations\201602162151204_InitialCreate.cs" />
+    <Compile Include="..\DbLocalizationProvider\Migrations\201602162151204_InitialCreate.Designer.cs" Link="Migrations\201602162151204_InitialCreate.Designer.cs" />
+    <Compile Include="..\DbLocalizationProvider\Migrations\201602162154512_AddedFromCodeColumn.cs" Link="Migrations\201602162154512_AddedFromCodeColumn.cs" />
+    <Compile Include="..\DbLocalizationProvider\Migrations\201602162154512_AddedFromCodeColumn.Designer.cs" Link="Migrations\201602162154512_AddedFromCodeColumn.Designer.cs" />
+    <Compile Include="..\DbLocalizationProvider\Migrations\201603181424379_AddedIsModifiedColumn.cs" Link="Migrations\201603181424379_AddedIsModifiedColumn.cs" />
+    <Compile Include="..\DbLocalizationProvider\Migrations\201603181424379_AddedIsModifiedColumn.Designer.cs" Link="Migrations\201603181424379_AddedIsModifiedColumn.Designer.cs" />
+    <Compile Include="..\DbLocalizationProvider\Migrations\201702192136159_ConvertLanguageColumn.cs" Link="Migrations\201702192136159_ConvertLanguageColumn.cs" />
+    <Compile Include="..\DbLocalizationProvider\Migrations\201702192136159_ConvertLanguageColumn.Designer.cs" Link="Migrations\201702192136159_ConvertLanguageColumn.Designer.cs" />
+    <Compile Include="..\DbLocalizationProvider\Migrations\201702192145132_AddResourceKeyIndex.cs" Link="Migrations\201702192145132_AddResourceKeyIndex.cs" />
+    <Compile Include="..\DbLocalizationProvider\Migrations\201702192145132_AddResourceKeyIndex.Designer.cs" Link="Migrations\201702192145132_AddResourceKeyIndex.Designer.cs" />
+    <Compile Include="..\DbLocalizationProvider\Migrations\201702202112172_ResourceKeyUnique.cs" Link="Migrations\201702202112172_ResourceKeyUnique.cs" />
+    <Compile Include="..\DbLocalizationProvider\Migrations\201702202112172_ResourceKeyUnique.Designer.cs" Link="Migrations\201702202112172_ResourceKeyUnique.Designer.cs" />
+    <Compile Include="..\DbLocalizationProvider\Migrations\Configuration.cs" Link="Migrations\Configuration.cs" />
+    <Compile Include="..\DbLocalizationProvider\ModelMetadataProvidersConfiguration.cs" Link="ModelMetadataProvidersConfiguration.cs" />
+    <Compile Include="..\DbLocalizationProvider\Queries\AvailableLanguages.cs" Link="Queries\AvailableLanguages.cs" />
+    <Compile Include="..\DbLocalizationProvider\Queries\GetAllResources.cs" Link="Queries\GetAllResources.cs" />
+    <Compile Include="..\DbLocalizationProvider\Queries\GetAllTranslations.cs" Link="Queries\GetAllTranslations.cs" />
+    <Compile Include="..\DbLocalizationProvider\Queries\GetTranslation.cs" Link="Queries\GetTranslation.cs" />
+    <Compile Include="..\DbLocalizationProvider\Queries\Internal\QueryHandlerWrapper.cs" Link="Queries\Internal\QueryHandlerWrapper.cs" />
+    <Compile Include="..\DbLocalizationProvider\Refactoring\RefactoredModelAttribute.cs" Link="Refactoring\RefactoredModelAttribute.cs" />
+    <Compile Include="..\DbLocalizationProvider\Refactoring\RefactorPhase.cs" Link="Refactoring\RefactorPhase.cs" />
+    <Compile Include="..\DbLocalizationProvider\Refactoring\RefactorStep.cs" Link="Refactoring\RefactorStep.cs" />
+    <Compile Include="..\DbLocalizationProvider\ResourceItem.cs" Link="ResourceItem.cs" />
+    <Compile Include="..\DbLocalizationProvider\ResourceKeyAttribute.cs" Link="ResourceKeyAttribute.cs" />
+    <Compile Include="..\DbLocalizationProvider\Sync\DiscoveredResource.cs" Link="Sync\DiscoveredResource.cs" />
+    <Compile Include="..\DbLocalizationProvider\Sync\EnumTypeScanner.cs" Link="Sync\EnumTypeScanner.cs" />
+    <Compile Include="..\DbLocalizationProvider\Sync\IResourceTypeScanner.cs" Link="Sync\IResourceTypeScanner.cs" />
+    <Compile Include="..\DbLocalizationProvider\Sync\LocalizedModelTypeScanner.cs" Link="Sync\LocalizedModelTypeScanner.cs" />
+    <Compile Include="..\DbLocalizationProvider\Sync\LocalizedResourceTypeScanner.cs" Link="Sync\LocalizedResourceTypeScanner.cs" />
+    <Compile Include="..\DbLocalizationProvider\Sync\LocalizedTypeScannerBase.cs" Link="Sync\LocalizedTypeScannerBase.cs" />
+    <Compile Include="..\DbLocalizationProvider\Sync\ManualResource.cs" Link="Sync\ManualResource.cs" />
+    <Compile Include="..\DbLocalizationProvider\Sync\ResourceSynchronizer.cs" Link="Sync\ResourceSynchronizer.cs" />
+    <Compile Include="..\DbLocalizationProvider\Sync\TypeDiscoveryHelper.cs" Link="Sync\TypeDiscoveryHelper.cs" />
+    <Compile Include="..\DbLocalizationProvider\TranslationsExtensions.cs" Link="TranslationsExtensions.cs" />
+    <Compile Include="..\DbLocalizationProvider\TypeFactory.cs" Link="TypeFactory.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="..\DbLocalizationProvider\Migrations\201602162151204_InitialCreate.resx" Link="Migrations\201602162151204_InitialCreate.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\DbLocalizationProvider\Migrations\201602162154512_AddedFromCodeColumn.resx" Link="Migrations\201602162154512_AddedFromCodeColumn.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\DbLocalizationProvider\Migrations\201603181424379_AddedIsModifiedColumn.resx" Link="Migrations\201603181424379_AddedIsModifiedColumn.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\DbLocalizationProvider\Migrations\201702192136159_ConvertLanguageColumn.resx" Link="Migrations\201702192136159_ConvertLanguageColumn.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\DbLocalizationProvider\Migrations\201702192145132_AddResourceKeyIndex.resx" Link="Migrations\201702192145132_AddResourceKeyIndex.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\DbLocalizationProvider\Migrations\201702202112172_ResourceKeyUnique.resx" Link="Migrations\201702202112172_ResourceKeyUnique.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Commands\Internal\" />
+    <Folder Include="DataAnnotations\" />
+    <Folder Include="Export\" />
+    <Folder Include="Import\" />
+    <Folder Include="Internal\" />
+    <Folder Include="Migrations\" />
+    <Folder Include="Sync\" />
+    <Folder Include="Refactoring\" />
+    <Folder Include="Queries\Internal\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="1.1.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="1.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="1.1.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LocalizationProvider.Core.Abstractions\LocalizationProvider.Core.Abstractions.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Reflection;
 using DbLocalizationProvider.Cache;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace DbLocalizationProvider
 {
@@ -98,7 +99,7 @@ namespace DbLocalizationProvider
 
         public TypeFactory TypeFactory { get; } = new TypeFactory();
 
-        public ICacheManager CacheManager { get; set; } = new HttpCacheManager();
+        public ICacheManager CacheManager { get; set; } = new InMemoryCacheManager();
 
         public bool EnableInvariantCultureFallback { get; set; } = false;
 
@@ -114,7 +115,7 @@ namespace DbLocalizationProvider
 
         public ICollection<CustomAttributeDescriptor> CustomAttributes { get; set; } = new List<CustomAttributeDescriptor>();
 
-        public static void Setup(Action<ConfigurationContext> configCallback)
+        public static void Setup(IMvcBuilder builder, Action<ConfigurationContext> configCallback)
         {
             configCallback?.Invoke(Current);
         }

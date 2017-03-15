@@ -1,4 +1,6 @@
-﻿namespace DbLocalizationProvider.Cache
+﻿using System.Collections.Generic;
+
+namespace DbLocalizationProvider.Cache
 {
     public interface ICacheManager
     {
@@ -7,5 +9,7 @@
         object Get(string key);
 
         void Remove(string key);
+
+        IEnumerable<string> Keys { get; }
     }
 }

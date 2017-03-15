@@ -1,19 +1,27 @@
-﻿using System.Data.Entity;
-using DbLocalizationProvider.Migrations;
+﻿using System.Configuration;
+using Microsoft.EntityFrameworkCore;
 
 namespace DbLocalizationProvider
 {
     public class LanguageEntities : DbContext
     {
+        private readonly string _connectionString;
         public LanguageEntities() : this(ConfigurationContext.Current.ConnectionName) { }
 
-        public LanguageEntities(string connectionString) : base(connectionString)
+        public LanguageEntities(string connectionString) // : base(new DbContextOptions<>())
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<LanguageEntities, Configuration>());
-            Configuration.LazyLoadingEnabled = false;
-            Configuration.ProxyCreationEnabled = false;
+            _connectionString = connectionString;
 
-            Database.Initialize(false);
+            //Database.SetInitializer(new MigrateDatabaseToLatestVersion<LanguageEntities, Configuration>());
+            //Configuration.LazyLoadingEnabled = false;
+            //Configuration.ProxyCreationEnabled = false;
+
+            //Database.Initialize(false);
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["_connectionString"].ConnectionString);
         }
 
         public virtual DbSet<LocalizationResource> LocalizationResources { get; set; }
